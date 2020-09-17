@@ -1,0 +1,25 @@
+{
+  "name": "typescript-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "build": "tsc",
+    "build-watch": "tsc -w",
+    "start-watch": "nodemon ./src/index.js",
+    "dev": "concurrently -k -p \"[{name}]\" -n \"Ts,Js\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run build-watch\" \"npm run start-watch\""
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "apollo-server": "^2.17.0",
+    "dotenv": "^8.2.0",
+    "graphql": "^15.3.0",
+    "nodemon": "^2.0.4",
+    "typeorm": "^0.2.26"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.2"
+  }
+}
