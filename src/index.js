@@ -1,3 +1,4 @@
+"use strict";
 var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
     if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
     return cooked;
@@ -13,9 +14,17 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+exports.__esModule = true;
 require("dotenv").config();
 var _a = require("apollo-server"), ApolloServer = _a.ApolloServer, gql = _a.gql;
-var typeDefs = gql(__makeTemplateObject(["\n  type Task {\n    id: ID\n    title: String\n    taskType: TaskType\n    executor: User\n    description: String\n    important: Boolean\n  }\n\n  input TaskInput {\n    title: String!\n    taskTypeId: ID!\n    executorId: ID!\n    description: String!\n    important: Boolean!\n  }\n\n  input TaskUpdateInput {\n    title: String\n    taskTypeId: Int\n    executorId: Int\n    description: String\n    important: Boolean\n  }\n\n  type TaskType {\n    id: ID\n    name: String\n  }\n\n  type Query {\n    tasks(name: String): [Task]\n    task(id: ID!): Task\n    taskTypes(name: String): [TaskType]\n    users(name: String): [User]\n  }\n\n  type Mutation {\n    addTask(input: TaskInput): Task\n    updateTask(id: ID!, input: TaskUpdateInput): Task\n  }\n\n  type User {\n    id: ID\n    name: String\n  }\n"], ["\n  type Task {\n    id: ID\n    title: String\n    taskType: TaskType\n    executor: User\n    description: String\n    important: Boolean\n  }\n\n  input TaskInput {\n    title: String!\n    taskTypeId: ID!\n    executorId: ID!\n    description: String!\n    important: Boolean!\n  }\n\n  input TaskUpdateInput {\n    title: String\n    taskTypeId: Int\n    executorId: Int\n    description: String\n    important: Boolean\n  }\n\n  type TaskType {\n    id: ID\n    name: String\n  }\n\n  type Query {\n    tasks(name: String): [Task]\n    task(id: ID!): Task\n    taskTypes(name: String): [TaskType]\n    users(name: String): [User]\n  }\n\n  type Mutation {\n    addTask(input: TaskInput): Task\n    updateTask(id: ID!, input: TaskUpdateInput): Task\n  }\n\n  type User {\n    id: ID\n    name: String\n  }\n"]));
+var typeorm_database_1 = require("../typeorm.database");
+typeorm_database_1["default"]()
+    .then(function () {
+    console.log("Database was connected.");
+})["catch"](function (error) {
+    console.error("Database error:", error);
+});
+var typeDefs = gql(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  type Task {\n    id: ID\n    title: String\n    taskType: TaskType\n    executor: User\n    description: String\n    important: Boolean\n  }\n\n  input TaskInput {\n    title: String!\n    taskTypeId: ID!\n    executorId: ID!\n    description: String!\n    important: Boolean!\n  }\n\n  input TaskUpdateInput {\n    title: String\n    taskTypeId: Int\n    executorId: Int\n    description: String\n    important: Boolean\n  }\n\n  type TaskType {\n    id: ID\n    name: String\n  }\n\n  type Query {\n    tasks(name: String): [Task]\n    task(id: ID!): Task\n    taskTypes(name: String): [TaskType]\n    users(name: String): [User]\n  }\n\n  type Mutation {\n    addTask(input: TaskInput): Task\n    updateTask(id: ID!, input: TaskUpdateInput): Task\n  }\n\n  type User {\n    id: ID\n    name: String\n  }\n"], ["\n  type Task {\n    id: ID\n    title: String\n    taskType: TaskType\n    executor: User\n    description: String\n    important: Boolean\n  }\n\n  input TaskInput {\n    title: String!\n    taskTypeId: ID!\n    executorId: ID!\n    description: String!\n    important: Boolean!\n  }\n\n  input TaskUpdateInput {\n    title: String\n    taskTypeId: Int\n    executorId: Int\n    description: String\n    important: Boolean\n  }\n\n  type TaskType {\n    id: ID\n    name: String\n  }\n\n  type Query {\n    tasks(name: String): [Task]\n    task(id: ID!): Task\n    taskTypes(name: String): [TaskType]\n    users(name: String): [User]\n  }\n\n  type Mutation {\n    addTask(input: TaskInput): Task\n    updateTask(id: ID!, input: TaskUpdateInput): Task\n  }\n\n  type User {\n    id: ID\n    name: String\n  }\n"])));
 var taskTypes = [
     {
         id: 1,
@@ -119,3 +128,4 @@ var server = new ApolloServer({ typeDefs: typeDefs, resolvers: resolvers });
 server.listen(process.env.PORT, function () {
     console.log("Server ready at " + process.env.PORT);
 });
+var templateObject_1;

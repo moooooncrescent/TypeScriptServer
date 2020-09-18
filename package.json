@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js",
-    "build": "tsc",
-    "build-watch": "tsc -w",
+    "build": "tsc ./src/index.ts",
+    "build-watch": "tsc -w ./src/index.ts",
     "start-watch": "nodemon ./src/index.js",
     "dev": "concurrently -k -p \"[{name}]\" -n \"Ts,Js\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run build-watch\" \"npm run start-watch\""
   },
@@ -17,6 +16,7 @@
     "dotenv": "^8.2.0",
     "graphql": "^15.3.0",
     "nodemon": "^2.0.4",
+    "pg": "^8.3.3",
     "typeorm": "^0.2.26"
   },
   "devDependencies": {
