@@ -1,6 +1,8 @@
 require("dotenv").config();
 const { ApolloServer, gql } = require("apollo-server");
 import connection from "../typeorm.database";
+import { Task } from "../taskModel";
+
 connection()
   .then(() => {
     console.log("Database was connected.");
