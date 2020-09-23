@@ -9,10 +9,10 @@ export class Task extends BaseEntity {
   title: string;
 
   @Column()
-  taskTypeId: string;
+  taskTypeId: number;
 
   @Column()
-  executorId: string;
+  executorId: number;
 
   @Column()
   description: string;

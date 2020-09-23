@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "tsc ./src/index.ts",
-    "build-watch": "tsc -w ./src/index.ts",
+    "build": "tsc",
+    "build-watch": "tsc -w",
     "start-watch": "nodemon ./src/index.js",
     "dev": "concurrently -k -p \"[{name}]\" -n \"Ts,Js\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run build-watch\" \"npm run start-watch\""
   },
