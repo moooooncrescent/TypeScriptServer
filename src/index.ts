@@ -40,7 +40,9 @@ const resolvers = {
           important: boolean;
         };
       }
-    ) => Task.getRepository().save({ ...input }),
+    ) => {
+      return Task.getRepository().save({ ...input });
+    },
     updateTask: (
       _: any,
       {
@@ -56,15 +58,20 @@ const resolvers = {
           important: boolean;
         };
       }
-    ) => Task.getRepository().save({ ...input, id: id }),
+    ) => {
+      console.log(id, input);
+      return Task.getRepository().save({ ...input, id: Number(id) });
+    },
   },
   Task: {
-    taskType: (task: any) => TaskType.getRepository().find(), //не понял, как добавить сравнеие выбранного типа таска со списком из бд (tasktype выбранный при создании таски добавляется в промис и  из бд)
-    executor: (task: any) => User.getRepository().find(),
+    taskType: (task: { taskTypeId: number }) =>
+      TaskType.getRepository().findOne(task.taskTypeId),
+    executor: (task: { executorId: number }) =>
+      User.getRepository().findOne(task.executorId),
   },
 };
 
-const server = new ApolloServer({ typeDefs });
+const server = new ApolloServer({ typeDefs, resolvers });
 
 server.listen(process.env.PORT, () => {
   console.log(`Server ready at ${process.env.PORT}`);

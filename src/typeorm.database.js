@@ -6,7 +6,7 @@ var connection = function () {
         type: "postgres",
         database: "tasks",
         url: process.env.POSTGRES_URL,
-        entities: [__dirname + "/../../src/entity/*/.model.js"],
+        entities: [__dirname + "/../src/entity/*.model.js"],
         synchronize: true
     });
 };

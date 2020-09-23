@@ -53,15 +53,20 @@ var resolvers = {
         },
         updateTask: function (_, _a) {
             var input = _a.input, id = _a.id;
-            return task_model_1.Task.getRepository().save(__assign(__assign({}, input), { id: id }));
+            console.log(id, input);
+            return task_model_1.Task.getRepository().save(__assign(__assign({}, input), { id: Number(id) }));
         }
     },
     Task: {
-        taskType: function (task) { return taskType_model_1.TaskType.getRepository().find(); },
-        executor: function (task) { return user_model_1.User.getRepository().find(); }
+        taskType: function (task) {
+            return taskType_model_1.TaskType.getRepository().findOne(task.taskTypeId);
+        },
+        executor: function (task) {
+            return user_model_1.User.getRepository().findOne(task.executorId);
+        }
     }
 };
-var server = new ApolloServer({ typeDefs: typeDefs_1["default"] });
+var server = new ApolloServer({ typeDefs: typeDefs_1["default"], resolvers: resolvers });
 server.listen(process.env.PORT, function () {
     console.log("Server ready at " + process.env.PORT);
 });
